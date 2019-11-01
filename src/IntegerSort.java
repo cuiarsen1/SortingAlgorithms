@@ -84,11 +84,16 @@ public class IntegerSort implements Sorter {
 		}
 	}
 	
-	public void sort_method3(int[] list)
+	public void sort_method3(int start, int end)
 	{
 		
 	}
-	 
+	
+	public void combineArray(int start, int end)
+	{
+		
+	}
+	
 	@Override
 	public void setList(int[] list) {
 		globalList = list;
@@ -115,7 +120,7 @@ public class IntegerSort implements Sorter {
 		
 		if (type == 3)
 		{
-			sort_method3()
+			sort_method3(globalList, 0, 0);
 		}
 		
 	}
