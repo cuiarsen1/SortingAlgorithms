@@ -5,8 +5,6 @@ public class IntegerSort implements Sorter {
 	
 	protected int[] globalList;
 	
-	PUSH LIST FILES TO UPSTREAM TO BRING HOME
-	
 	public static void main(String[] args) throws FileNotFoundException {
 		
 		File fileList = new File("2power4.txt");
@@ -36,6 +34,10 @@ public class IntegerSort implements Sorter {
 		}
 		
 		o.setList(unsortedList);
+		
+		// Start and end values to pass into sort_method3
+		int start = 0;
+		int end = o.globalList.length;
 		
 		double timeStart = System.nanoTime();
 		o.sort(2);
@@ -102,8 +104,54 @@ public class IntegerSort implements Sorter {
 			
 	}
 	
+	CONTINUE WRITING COMBINEARRAY
 	public void combineArray(int start, int end)
 	{
+		int middle = (start + end)/2;
+		
+		int[] list1 = new int[middle + 1];
+		int[] list2 = new int[middle + 1];
+		int[] list3 = new int[end];
+		
+		// Indexes tracking through lists 1, 2 and 3
+		int i1 = 0;
+		int i2 = 0;
+		int i3 = 0;
+		
+		while (i1 < list1.length && i2 < list2.length)
+		{
+			if (list1[i1] <= list2[i2])
+			{
+				list3[i3] = list1[i1];
+				
+				i1 += 1;
+				i3 += 1;
+			}
+			else if (list2[i2] < list1[i1])
+			{
+				list3[i3] = list2[i2];
+				
+				i2 += 1;
+				i3 += 1;
+			}	
+		}
+		
+		while (i1 < list1.length)
+		{
+			list3[i3] = list1[i1];
+			
+			i1 += 1;
+			i3 += 1;
+		}
+		
+		while (i2 < list2.length)
+		{
+			list3[i3] = list2[i2];
+			
+			i2 += 1;
+			i3 += 1;
+		}
+		
 		
 	}
 	
