@@ -5,7 +5,8 @@ public class IntegerSort implements Sorter {
 	
 	protected int[] globalList;
 	
-
+	PUSH LIST FILES TO UPSTREAM TO BRING HOME
+	
 	public static void main(String[] args) throws FileNotFoundException {
 		
 		File fileList = new File("2power4.txt");
@@ -86,7 +87,19 @@ public class IntegerSort implements Sorter {
 	
 	public void sort_method3(int start, int end)
 	{
+		if (end - start == 0)
+				return;
 		
+		else
+		{
+			int middle = (start + end)/2;
+			
+			sort_method3(start, middle);
+			sort_method3(middle + 1, end);
+			
+			combineArray(start, end);
+		}
+			
 	}
 	
 	public void combineArray(int start, int end)
@@ -118,10 +131,10 @@ public class IntegerSort implements Sorter {
 			sort_method2(globalList);
 		}
 		
-		if (type == 3)
-		{
-			sort_method3(globalList, 0, 0);
-		}
+		/* if (type == 3)
+		 * {
+		 * sort_method3(0, 0);
+		 * } */
 		
 	}
 
