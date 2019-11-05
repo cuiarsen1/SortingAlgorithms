@@ -1,9 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-public class IntegerSort implements Sorter {
-	
-	TRY WITHOUT RECURSION, USING 2D ARRAYS
+public class IntegerSort2 implements Sorter {
 	
 	protected int[] globalList;
 	
