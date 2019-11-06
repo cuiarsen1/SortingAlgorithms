@@ -3,13 +3,13 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 public class IntegerSort implements Sorter {
 	
-	TRY WITHOUT RECURSION, USING 2D ARRAYS
+	//TRY WITHOUT RECURSION, USING 2D ARRAYS
 	
 	protected int[] globalList;
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		
-		File fileList = new File("2power4.txt");
+		File fileList = new File("2power20.txt");
 		Scanner scanCount = new Scanner(fileList);
 		Scanner scan = new Scanner(fileList);
 		
@@ -37,20 +37,16 @@ public class IntegerSort implements Sorter {
 		
 		o.setList(unsortedList);
 		
-		// Start and end values to pass into sort_method3
-		int start = 0;
-		int end = o.globalList.length;
-		
 		double timeStart = System.nanoTime();
 		o.sort(3);
 		double timeEnd = System.nanoTime();
 		
-		//System.out.println((timeEnd - timeStart)/1e9);
+		System.out.println((timeEnd - timeStart)/1e9);
 		
-		for (int i = 0; i < o.globalList.length; i += 1)
-		{
-			System.out.println(o.globalList[i]);
-		}
+		/* for (int i = 0; i < o.globalList.length; i += 1)
+		 * {
+		 * System.out.println(o.globalList[i]);
+		 * } */
 		
 		scanCount.close();
 		scan.close();
@@ -106,21 +102,22 @@ public class IntegerSort implements Sorter {
 			
 	}
 	
-	public int[] combineArray(int start, int end)
+	public void combineArray(int start, int end)
 	{
-		int middle = (start + end)/2; // middle index of the main array
 		int length = end - start;
 		
+		// Arrays used to sort the values within the current specified indexes
 		int[] list1 = new int[length/2 + 1];
 		int[] list2 = new int[length/2 + 1];
 		int[] list3 = new int[length + 1];
 		
-		// Index tracking the subarrays
-		int i = 0; 
+		// Index tracking the subarrays, used to add the unsorted values from the main list to them
+		int i = 0;
 		
-		// Index tracking the main list containing the values
+		// Index tracking the main list containing the unsorted values
 		int globalIndex = start;
 		
+		// 
 		while (i < length/2 + 1)
 		{
 			list1[i] = globalList[globalIndex];
@@ -130,7 +127,7 @@ public class IntegerSort implements Sorter {
 			
 		}
 		
-		i = 0;
+		i = 0; // Reset index to track the second subarray
 		
 		while (i < length/2 + 1)
 		{
@@ -140,7 +137,7 @@ public class IntegerSort implements Sorter {
 			globalIndex += 1;
 		}
 		
-		// Indexes tracking through lists 1, 2 and 3
+		// Indexes tracking through the subarrays
 		int i1 = 0;
 		int i2 = 0;
 		int i3 = 0;
@@ -163,6 +160,7 @@ public class IntegerSort implements Sorter {
 			}	
 		}
 		
+		// If one subarray reaches the end before the other, add the rest of the values to the list
 		while (i1 < list1.length)
 		{
 			list3[i3] = list1[i1];
@@ -179,7 +177,10 @@ public class IntegerSort implements Sorter {
 			i3 += 1;
 		}
 		
-		return list3;
+		// Transfers the sorted values to the main list
+		for (int x = 0; x <= length; x += 1)
+			globalList[start + x] = list3[x];
+		
 	}
 	
 	@Override
@@ -208,9 +209,15 @@ public class IntegerSort implements Sorter {
 		
 		if (type == 3)
 		{
-		    sort_method3(0, 15);
+		    sort_method3(0, globalList.length - 1);
 		} 
 		
+	}
+	
+	@Override
+	public String toString() {
+		
+		return null;
 	}
 
 }
