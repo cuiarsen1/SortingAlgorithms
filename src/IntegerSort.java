@@ -10,7 +10,7 @@ public class IntegerSort implements Sorter {
 
 	public static void main(String[] args) throws FileNotFoundException {
 
-		File fileList = new File("2power20.txt");
+		File fileList = new File("2power19.txt");
 		Scanner scanCount = new Scanner(fileList);
 		Scanner scan = new Scanner(fileList);
 
@@ -19,7 +19,8 @@ public class IntegerSort implements Sorter {
 		int index = 0; // Index to track how long the list of numbers is
 
 		// Counts how many numbers are in the file
-		while (scanCount.hasNextInt()) {
+		while (scanCount.hasNextInt())
+		{
 			index += 1;
 			scanCount.nextInt();
 		}
@@ -28,7 +29,8 @@ public class IntegerSort implements Sorter {
 
 		index = 0; // Index to add the numbers from the file to an array
 
-		while (scan.hasNextInt()) {
+		while (scan.hasNextInt())
+		{
 			unsortedList[index] = scan.nextInt();
 			index += 1;
 		}
@@ -41,20 +43,23 @@ public class IntegerSort implements Sorter {
 
 		System.out.println((timeEnd - timeStart) / 1e9);
 
-		/*
-		 * for (int i = 0; i < o.globalList.length; i += 1) {
-		 * System.out.println(o.globalList[i]); }
-		 */
-
+//		for (int i = 0; i < o.globalList.length; i += 1)
+//		{
+//			System.out.println(o.globalList[i]);
+//		} 
+		
 		scanCount.close();
 		scan.close();
 
 	}
 
 	public void sort_method1(int[] list) {
-		for (int j = list.length - 1; j > 0; j -= 1) {
-			for (int i = 0; i < j; i += 1) {
-				if (list[i + 1] < list[i]) {
+		for (int j = list.length - 1; j > 0; j -= 1)
+		{
+			for (int i = 0; i < j; i += 1)
+			{
+				if (list[i + 1] < list[i])
+				{
 					int temp = list[i + 1];
 					list[i + 1] = list[i];
 					list[i] = temp;
@@ -64,9 +69,12 @@ public class IntegerSort implements Sorter {
 	}
 
 	public void sort_method2(int[] list) {
-		for (int i = 0; i < list.length - 1; i += 1) {
-			for (int j = i + 1; j < list.length; j += 1) {
-				if (list[j] < list[i]) {
+		for (int i = 0; i < list.length - 1; i += 1)
+		{
+			for (int j = i + 1; j < list.length; j += 1)
+			{
+				if (list[j] < list[i])
+				{
 					int temp = list[j];
 					list[j] = list[i];
 					list[i] = temp;
@@ -75,16 +83,17 @@ public class IntegerSort implements Sorter {
 		}
 	}
 
-	/*Recursive method that breaks down the list into smaller components,
-	and then recombines them in sorted order using combineArray*/
+	/* Recursive method that breaks down the list into smaller components,
+	 * and then recombines them in sorted order using combineArray */
 	public void sort_method3(int start, int end) {
-		
+
 		// When the list is split until each single value is separate, exit the recursive loop
 		if (end - start == 0)
 			return;
 
 		// If the values have not been split into separate 
-		else {
+		else
+		{
 			int middle = (start + end) / 2;
 
 			sort_method3(start, middle);
@@ -94,14 +103,38 @@ public class IntegerSort implements Sorter {
 		}
 
 	}
+	
+	/* public void combineArr(int low, int high) {
+	 * int mid = (low + high) / 2;
+	 * int[] temp = new int[(int) Math.pow(2, 19)];
+	 * for (int i=0;i<=high;i++) {
+	 * temp[i] = array[i];
+	 * }
+	 * int start = low;
+	 * int end = mid + 1;
+	 * while (start <= mid && end <= high) {
+	 * if (temp[start] <= temp[end]) {
+	 * array[low] = temp[start];
+	 * start++;
+	 * }
+	 * else {
+	 * array[low] = temp[end];
+	 * end++;
+	 * }
+	 * low++;
+	 * }
+	 * while (start <= mid) {
+	 * array[low] = temp[start];
+	 * low++;
+	 * start++;
+	 * }
+	 * } */
 
 	public void combineArray(int start, int end) {
 		int length = end - start;
 
-		/*
-		 * Arrays used to sort the values within the current specified indexes. Split
-		 * the values between the 2 indexes into 2 separate arrays
-		 */
+		/* Arrays used to sort the values within the current specified indexes. Split
+		 * the values between the 2 indexes into 2 separate arrays */
 		int[] list1 = new int[length / 2 + 1];
 		int[] list2 = new int[length / 2 + 1];
 		int[] list3 = new int[length + 1];
@@ -116,8 +149,8 @@ public class IntegerSort implements Sorter {
 
 		// Runs through the first half of the current index range, adding the values
 		// from the main list to the subarray
-		while (i < length / 2 + 1) {
-
+		while (i < length / 2 + 1)
+		{
 			list1[i] = globalList[globalIndex];
 
 			i += 1;
@@ -129,29 +162,35 @@ public class IntegerSort implements Sorter {
 
 		// Runs through the second half of the current index range, adding the values
 		// from the main list to the subarray
-		while (i < length / 2 + 1) {
+		while (i < length / 2 + 1)
+		{
 			list2[i] = globalList[globalIndex];
 
 			i += 1;
 			globalIndex += 1;
 		}
 
-		/*Indexes tracking through the subarrays, sorting 
-		and combining the two halves of the index range*/
+		/* Indexes tracking through the subarrays, sorting and combining
+		 * the values in the two halves of the current index range */
 		int i1 = 0;
 		int i2 = 0;
 		int i3 = 0;
 
-		while (i1 < list1.length && i2 < list2.length) {
-			
-			if (list1[i1] <= list2[i2]) 
+		// Runs through the two subarrays and adds the values in sorted order to the third subarray
+		while (i1 < list1.length && i2 < list2.length)
+		{
+			/* If the current value in the first subarray is smaller than the current
+			 * value in the second subarray, add the smaller value to the third subarray */
+			if (list1[i1] <= list2[i2])
 			{
 				list3[i3] = list1[i1];
 
 				i1 += 1;
 				i3 += 1;
-				
-			}else if (list2[i2] < list1[i1]) 
+
+				/* If the current value in the second subarray is smaller than the current
+				 * value in the first subarray, add the smaller value to the third subarray */
+			} else if (list2[i2] < list1[i1])
 			{
 				list3[i3] = list2[i2];
 
@@ -160,17 +199,19 @@ public class IntegerSort implements Sorter {
 			}
 		}
 
-		/*If one subarray reaches its end before the other, add the rest of the 
-		values in the subarray to the list as you know it is already sorted*/
-		
-		while (i1 < list1.length) {
+		/* If one subarray reaches its end before the other, add the rest of the
+		 * values in the subarray to the list as you know it is already sorted */
+
+		while (i1 < list1.length)
+		{
 			list3[i3] = list1[i1];
 
 			i1 += 1;
 			i3 += 1;
 		}
 
-		while (i2 < list2.length) {
+		while (i2 < list2.length)
+		{
 			list3[i3] = list2[i2];
 
 			i2 += 1;
@@ -197,15 +238,18 @@ public class IntegerSort implements Sorter {
 	@Override
 	public void sort(int type) {
 
-		if (type == 1) {
+		if (type == 1)
+		{
 			sort_method1(globalList);
 		}
 
-		if (type == 2) {
+		if (type == 2)
+		{
 			sort_method2(globalList);
 		}
 
-		if (type == 3) {
+		if (type == 3)
+		{
 			sort_method3(0, globalList.length - 1);
 		}
 
