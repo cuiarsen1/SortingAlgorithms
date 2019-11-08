@@ -38,7 +38,7 @@ public class IntegerSort implements Sorter {
 		o.setList(unsortedList);
 
 		double timeStart = System.nanoTime();
-		o.sort(1);
+		o.sort(2);
 		double timeEnd = System.nanoTime();
 
 		System.out.println((timeEnd - timeStart) / 1e9);
