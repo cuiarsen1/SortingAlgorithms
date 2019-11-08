@@ -1,3 +1,11 @@
+// Arsen Cui
+// ICS4U1-01
+// November 10, 2019
+// Mr. Radulovic
+// ICS4U1 Efficiency of Algorithms Assignment
+/*This is an interface containing the setList, getList, sort, and toString methods that are 
+implemented in the IntegerSort class.*/
+
 public interface Sorter {
 	/**
 	 * This method sets the current list that is used in this class. 
