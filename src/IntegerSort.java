@@ -19,7 +19,7 @@ public class IntegerSort implements Sorter {
 
 	public static void main(String[] args) throws FileNotFoundException {
 
-		File fileList = new File("2power19.txt");
+		File fileList = new File("2power5.txt");
 		Scanner scanCount = new Scanner(fileList);
 		Scanner scan = new Scanner(fileList);
 
@@ -45,7 +45,7 @@ public class IntegerSort implements Sorter {
 		o.setList(unsortedList);
 
 		double timeStart = System.nanoTime();
-		o.sort(3);
+		o.sort(1);
 		double timeEnd = System.nanoTime();
 
 		System.out.println((timeEnd - timeStart) / 1e9);
