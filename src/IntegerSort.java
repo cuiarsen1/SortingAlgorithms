@@ -73,7 +73,7 @@ public class IntegerSort implements Sorter {
 		the order of them when necessary so the smaller integer is before the larger integer. This 
 		process is repeated with each successive pair of integers. This is continued until the 
 		indexes reach the end of the list, and then the process is redone from the start. At the 
-		end of one cycle, the largest integer sorted in that cyclewill be at the bottom, so each 
+		end of one cycle, the largest integer sorted in that cycle will be at the bottom, so each 
 		time you re run the cycle, you can stop at the largest integer that was sorted in the last 
 		cycle because you know it is already in order. All of this is repeated until the list is 
 		sorted.*/
