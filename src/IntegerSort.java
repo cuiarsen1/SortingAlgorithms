@@ -19,7 +19,7 @@ public class IntegerSort implements Sorter {
 
 	public static void main(String[] args) throws FileNotFoundException {
 
-		File fileList = new File("INPUT FILE PATH HERE"); // File containing the list of integers
+		File fileList = new File("INSERT FILE PATH HERE"); // File containing the list of integers
 		
 		// Scanner used to read the file, getting the amount of integers there are
 		Scanner scanCount = new Scanner(fileList);
@@ -60,14 +60,14 @@ public class IntegerSort implements Sorter {
 		double timeEnd = System.nanoTime();
 
 		System.out.println((timeEnd - timeStart) / 1e9 + " seconds");
-
+		
 		scanCount.close();
 		scan.close();
 
 	}
 
 	// First method used to sort the list of integers
-	public void sort_method1(int[] list) {
+	public void sort_method1() {
 		
 		/*Starting from the first and second index, this method compares 2 integers, and switches
 		the order of them when necessary so the smaller integer is before the larger integer. This 
@@ -79,23 +79,23 @@ public class IntegerSort implements Sorter {
 		sorted.*/
 		
 		// j represents the end index of the currently unsorted integers.
-		for (int j = list.length - 1; j > 0; j -= 1)
+		for (int j = globalList.length - 1; j > 0; j -= 1)
 		{
 			for (int i = 0; i < j; i += 1)
 			{
 				// If the second integer is smaller than the first, switch them
-				if (list[i + 1] < list[i])
+				if (globalList[i + 1] < globalList[i])
 				{
-					int temp = list[i + 1];
-					list[i + 1] = list[i];
-					list[i] = temp;
+					int temp = globalList[i + 1];
+					globalList[i + 1] = globalList[i];
+					globalList[i] = temp;
 				}
 			}
 		}
 	}
 
 	// Second method used to sort the list of integers
-	public void sort_method2(int[] list) {
+	public void sort_method2() {
 	
 		/*Starting from the first and second index, this method compares 2 integers, and switches
 		the order of them when necessary so the smaller integer is before the larger integer. This 
@@ -105,16 +105,16 @@ public class IntegerSort implements Sorter {
 		first index moved down one. All of this is repeated until the list is sorted.*/
 		
 		// i represents the first index
-		for (int i = 0; i < list.length - 1; i += 1)
+		for (int i = 0; i < globalList.length - 1; i += 1)
 		{
 			// j represents the second index
-			for (int j = i + 1; j < list.length; j += 1)
+			for (int j = i + 1; j < globalList.length; j += 1)
 			{
-				if (list[j] < list[i])
+				if (globalList[j] < globalList[i])
 				{
-					int temp = list[j];
-					list[j] = list[i];
-					list[i] = temp;
+					int temp = globalList[j];
+					globalList[j] = globalList[i];
+					globalList[i] = temp;
 				}
 			}
 		}
@@ -268,12 +268,12 @@ public class IntegerSort implements Sorter {
 
 		if (type == 1)
 		{
-			sort_method1(globalList);
+			sort_method1();
 		}
 
 		if (type == 2)
 		{
-			sort_method2(globalList);
+			sort_method2();
 		}
 
 		if (type == 3)
