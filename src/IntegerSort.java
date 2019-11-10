@@ -6,8 +6,7 @@
 /*This program compares the speeds and time efficiencies of 3 different sorting methods: 
 Methods 1, 2, and 3. The program will read from a file of integers and output the amount of time
 taken to sort the integers from least to greatest. Based on user input, they can choose whether to
-use Method 1, 2 or 3, and also choose the size of the file of integers they want to sort, from
-2^4 integers to 2^20 integers. */
+use Method 1, 2 or 3, and also choose the size of the file of integers they want to sort. */
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,7 +14,7 @@ import java.util.Scanner;
 
 public class IntegerSort implements Sorter {
 
-	private int[] globalList; // List that is passed into the sort methods to be sorted
+	private int[] globalList; // List that is edited during the sorting of the integers
 
 	public static void main(String[] args) throws FileNotFoundException {
 
@@ -28,7 +27,7 @@ public class IntegerSort implements Sorter {
 		Scanner scan = new Scanner(fileList); 
 
 		// Object of the IntegerSort class to use its own methods in the main method
-		IntegerSort o = new IntegerSort(); 
+		IntegerSort o = new IntegerSort();
 
 		int index = 0; // Index to track how long the list of integers is
 
@@ -50,7 +49,7 @@ public class IntegerSort implements Sorter {
 			index += 1;
 		}
 
-		// Transfers values from unsortedList to globalList, which is passed into the sort methods
+		// Transfers values from unsortedList to globalList, which is edited during the sorting
 		o.setList(unsortedList); 
 
 		// Tracks amount of time taken to sort the values in globalList, and prints time in seconds
@@ -164,14 +163,14 @@ public class IntegerSort implements Sorter {
 		int[] list3 = new int[length + 1];
 
 		/*Index used to track list1 and list2, adding the unsorted
-		values from the main list to list1 and list2*/
+		values from globalList to list1 and list2*/
 		int i = 0;
 
-		// Index tracking the main list containing the unsorted values
+		// Index tracking globalList containing the unsorted values
 		int globalIndex = start;
 
 		/* Runs through the first half of the current index range,
-		 * adding the values from the main list to list1 */
+		 * adding the values from globalList to list1 */
 		
 		while (i < list1.length)
 		{
@@ -185,7 +184,7 @@ public class IntegerSort implements Sorter {
 		i = 0; // Reset index to track the second half of the index range
 
 		/*Runs through the second half of the current index range,
-		adding the values from the main list to list2*/
+		adding the values from globalList to list2*/
 		
 		while (i < list2.length)
 		{
@@ -283,7 +282,7 @@ public class IntegerSort implements Sorter {
 
 	}
 
-	// Method used to return the current state of the list
+	// Method used to return the current state of the list as a string
 	@Override
 	public String toString() {
 
